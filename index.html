@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#071019">
 
-<title>Alex's Stock Builder — V13</title>
+<title>Alex's Stock Builder — V14</title>
 
 <style>
 :root{
@@ -21,48 +21,21 @@
   --yellow:#ffc857;
 }
 
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
   background:
-    radial-gradient(
-      circle at 70% -10%,
-      #123348 0,
-      #071019 40%
-    );
+    radial-gradient(circle at 70% -10%,#123348 0,#071019 40%);
   color:var(--text);
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   min-height:100vh;
 }
 
-button,
-input{
-  font:inherit;
-}
+button,input{font:inherit}
+button{cursor:pointer}
 
-button{
-  cursor:pointer;
-}
-
-.app{
-  display:flex;
-  min-height:100vh;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
+.app{display:flex;min-height:100vh}
 
 .side{
   width:235px;
@@ -80,9 +53,7 @@ button{
   margin:4px 10px 28px;
 }
 
-.brand span{
-  color:var(--accent);
-}
+.brand span{color:var(--accent)}
 
 .nav button{
   display:flex;
@@ -109,10 +80,6 @@ button{
   text-align:center;
 }
 
-/* =========================
-   MAIN
-========================= */
-
 .main{
   margin-left:235px;
   width:calc(100% - 235px);
@@ -138,13 +105,13 @@ button{
 
 .search input{
   width:100%;
+  min-width:0;
   background:none;
   border:0;
   outline:0;
   color:white;
   padding:5px 8px;
   font-size:17px;
-  min-width:0;
 }
 
 .search button{
@@ -162,26 +129,12 @@ button{
   border-radius:50%;
   display:grid;
   place-items:center;
-  background:linear-gradient(
-    135deg,
-    #25d8cf,
-    #3986ff
-  );
+  background:linear-gradient(135deg,#25d8cf,#3986ff);
   font-weight:900;
-  flex-shrink:0;
 }
 
-/* =========================
-   VIEWS
-========================= */
-
-.view{
-  display:none;
-}
-
-.view.active{
-  display:block;
-}
+.view{display:none}
+.view.active{display:block}
 
 .hero{
   display:flex;
@@ -215,17 +168,8 @@ button{
   text-align:right;
 }
 
-.change.up{
-  color:var(--green);
-}
-
-.change.down{
-  color:var(--red);
-}
-
-/* =========================
-   CARDS / GRID
-========================= */
+.change.up{color:var(--green)}
+.change.down{color:var(--red)}
 
 .grid{
   display:grid;
@@ -235,33 +179,21 @@ button{
 
 .card{
   grid-column:span 4;
-  background:
-    linear-gradient(
-      180deg,
-      #101c28,
-      #0c1721
-    );
+  background:linear-gradient(180deg,#101c28,#0c1721);
   border:1px solid var(--line);
   border-radius:18px;
   padding:20px;
 }
 
-.wide{
-  grid-column:span 8;
-}
-
-.full{
-  grid-column:1/-1;
-}
+.wide{grid-column:span 8}
+.full{grid-column:1/-1}
 
 .card h2,
 .card h3{
   margin:0 0 10px;
 }
 
-.muted{
-  color:var(--muted);
-}
+.muted{color:var(--muted)}
 
 .stats{
   display:grid;
@@ -282,10 +214,6 @@ button{
   margin-top:5px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
 .btn{
   border:1px solid var(--line);
   background:#122130;
@@ -300,16 +228,6 @@ button{
   border-color:var(--accent);
   font-weight:900;
 }
-
-.btn.danger{
-  background:#351822;
-  border-color:#5b2534;
-  color:#ff9aa6;
-}
-
-/* =========================
-   CHART TABS
-========================= */
 
 .tabs{
   display:flex;
@@ -334,17 +252,13 @@ button{
   font-weight:900;
 }
 
-/* =========================
-   CHART
-========================= */
-
 .chartbox{
   height:360px;
   position:relative;
 }
 
 .chartbox.large{
-  height:470px;
+  height:430px;
 }
 
 .chartbox svg{
@@ -352,7 +266,12 @@ button{
   height:100%;
 }
 
-.line{
+.chart-grid{
+  stroke:#263747;
+  stroke-width:1;
+}
+
+.chart-line{
   fill:none;
   stroke:var(--accent);
   stroke-width:3;
@@ -360,22 +279,31 @@ button{
   stroke-linejoin:round;
 }
 
-.area{
+.chart-sma20{
+  fill:none;
+  stroke:var(--yellow);
+  stroke-width:2;
+}
+
+.chart-sma50{
+  fill:none;
+  stroke:#7ea7ff;
+  stroke-width:2;
+}
+
+.chart-sma200{
+  fill:none;
+  stroke:#ff8f70;
+  stroke-width:2;
+}
+
+.chart-area{
   fill:url(#fade);
 }
 
-.axis{
-  stroke:#263747;
-  stroke-width:1;
-}
-
-.dot{
+.chart-dot{
   fill:var(--accent);
 }
-
-/* =========================
-   LISTS
-========================= */
 
 .list{
   display:grid;
@@ -406,9 +334,52 @@ button{
   margin-top:10px;
 }
 
-/* =========================
-   NEWS
-========================= */
+.signal{
+  display:inline-block;
+  padding:7px 12px;
+  border-radius:999px;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+.signal.green{
+  background:#123a2c;
+  color:var(--green);
+}
+
+.signal.red{
+  background:#3b1822;
+  color:var(--red);
+}
+
+.signal.yellow{
+  background:#3d3216;
+  color:var(--yellow);
+}
+
+.score{
+  font-size:34px;
+  font-weight:900;
+}
+
+.score.good{color:var(--green)}
+.score.bad{color:var(--red)}
+.score.neutral{color:var(--yellow)}
+
+.bar{
+  height:8px;
+  background:#1a2937;
+  border-radius:20px;
+  overflow:hidden;
+  margin:10px 0 18px;
+}
+
+.bar span{
+  display:block;
+  height:100%;
+  background:var(--accent);
+  border-radius:20px;
+}
 
 .news-item{
   padding:16px 0;
@@ -425,162 +396,12 @@ button{
   font-weight:800;
 }
 
-.news-item a:hover{
-  color:var(--accent);
-}
+.news-item a:hover{color:var(--accent)}
 
-/* =========================
-   LOADING
-========================= */
-
-.loading{
-  color:var(--accent);
-}
-
-.error{
-  color:var(--red);
-}
-
-.success{
-  color:var(--green);
-}
-
-/* =========================
-   MOBILE NAV
-========================= */
-
-.mobile-nav{
-  display:none;
-}
-
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  background:#122332;
-  border:1px solid var(--line);
-  padding:12px 16px;
-  border-radius:12px;
-  display:none;
-  z-index:100;
-  max-width:calc(100vw - 40px);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:900px){
-
-  .side{
-    display:none;
-  }
-
-  .main{
-    margin:0;
-    width:100%;
-    padding:16px 14px 115px;
-  }
-
-  .top{
-    margin-bottom:20px;
-  }
-
-  .search{
-    min-width:0;
-  }
-
-  .search button{
-    padding:8px 14px;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .card,
-  .wide,
-  .full{
-    grid-column:1;
-  }
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .hero{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .price{
-    text-align:left;
-  }
-
-  .mobile-nav{
-    display:flex;
-    position:fixed;
-    z-index:90;
-    bottom:12px;
-    left:12px;
-    right:12px;
-    background:#0b1621ee;
-    border:1px solid var(--line);
-    backdrop-filter:blur(15px);
-    border-radius:18px;
-    padding:7px;
-    gap:4px;
-  }
-
-  .mobile-nav button{
-    flex:1;
-    border:0;
-    background:none;
-    color:var(--muted);
-    padding:8px 3px;
-    border-radius:12px;
-    font-size:10px;
-  }
-
-  .mobile-nav button.active{
-    background:#122332;
-    color:var(--accent);
-  }
-
-  .chartbox.large{
-    height:350px;
-  }
-
-}
-
-@media(max-width:500px){
-
-  .stats{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .price{
-    font-size:32px;
-  }
-
-  .search input{
-    font-size:16px;
-  }
-
-}
-
-/* =========================
-   PORTFOLIO
-========================= */
-
-.portfolio-total{
-  font-size:30px;
-  font-weight:900;
-  margin-top:5px;
+.news-date{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:6px;
 }
 
 .holding{
@@ -613,31 +434,89 @@ button{
   margin-top:5px;
 }
 
-/* =========================
-   COACH
-========================= */
+.loading{color:var(--accent)}
+.error{color:var(--red)}
+.success{color:var(--green)}
 
-.signal{
-  display:inline-block;
-  padding:7px 12px;
-  border-radius:999px;
-  font-weight:900;
-  margin-bottom:12px;
+.mobile-nav{display:none}
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#122332;
+  border:1px solid var(--line);
+  padding:12px 16px;
+  border-radius:12px;
+  display:none;
+  z-index:100;
+  max-width:calc(100vw - 40px);
 }
 
-.signal.green{
-  background:#123a2c;
-  color:var(--green);
-}
+@media(max-width:900px){
 
-.signal.red{
-  background:#3b1822;
-  color:var(--red);
-}
+  .side{display:none}
 
-.signal.yellow{
-  background:#3d3216;
-  color:var(--yellow);
+  .main{
+    margin:0;
+    width:100%;
+    padding:16px 14px 115px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .card,
+  .wide,
+  .full{
+    grid-column:1;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .price{text-align:left}
+
+  .mobile-nav{
+    display:flex;
+    position:fixed;
+    z-index:90;
+    bottom:12px;
+    left:12px;
+    right:12px;
+    background:#0b1621ee;
+    border:1px solid var(--line);
+    backdrop-filter:blur(15px);
+    border-radius:18px;
+    padding:7px;
+    gap:4px;
+  }
+
+  .mobile-nav button{
+    flex:1;
+    border:0;
+    background:none;
+    color:var(--muted);
+    padding:8px 3px;
+    border-radius:12px;
+    font-size:10px;
+  }
+
+  .mobile-nav button.active{
+    background:#122332;
+    color:var(--accent);
+  }
+
+  .chartbox.large{
+    height:360px;
+  }
 }
 </style>
 </head>
@@ -645,10 +524,6 @@ button{
 <body>
 
 <div class="app">
-
-<!-- =========================
-     SIDEBAR
-========================= -->
 
 <aside class="side">
 
@@ -660,40 +535,32 @@ button{
 
 </aside>
 
-
-<!-- =========================
-     MAIN
-========================= -->
-
 <main class="main">
 
-  <div class="top">
+<div class="top">
 
-    <div class="search">
+  <div class="search">
 
-      <input
-        id="symbolInput"
-        value="AAPL"
-        placeholder="Enter stock ticker..."
-        autocomplete="off"
-      >
+    <input
+      id="symbolInput"
+      value="AAPL"
+      placeholder="Search ticker..."
+      autocomplete="off"
+      onkeydown="if(event.key==='Enter')loadSymbol()"
+    >
 
-      <button onclick="loadSymbol()">
-        Go
-      </button>
-
-    </div>
-
-    <div class="user">
-      D
-    </div>
+    <button onclick="loadSymbol()">
+      Go
+    </button>
 
   </div>
 
+  <div class="user">D</div>
 
-<!-- =========================
-     OVERVIEW
-========================= -->
+</div>
+
+
+<!-- HOME -->
 
 <section
   class="view active"
@@ -742,30 +609,22 @@ button{
   <div class="stats">
 
     <div class="stat">
-      <span class="muted">
-        Today's Open
-      </span>
+      <span class="muted">Open</span>
       <b id="open">—</b>
     </div>
 
     <div class="stat">
-      <span class="muted">
-        Day High
-      </span>
+      <span class="muted">Day High</span>
       <b id="high">—</b>
     </div>
 
     <div class="stat">
-      <span class="muted">
-        Day Low
-      </span>
+      <span class="muted">Day Low</span>
       <b id="low">—</b>
     </div>
 
     <div class="stat">
-      <span class="muted">
-        Previous Close
-      </span>
+      <span class="muted">Previous Close</span>
       <b id="prev">—</b>
     </div>
 
@@ -779,12 +638,10 @@ button{
 
     <div class="card wide">
 
-      <h2>
-        Price Chart
-      </h2>
+      <h2>Price Chart</h2>
 
       <p class="muted">
-        Real market data from your Netlify stock function.
+        Live market data and technical trend.
       </p>
 
       <div
@@ -797,13 +654,11 @@ button{
 
     <div class="card">
 
-      <h2>
-        AI Coach
-      </h2>
+      <h2>AI Coach</h2>
 
       <div id="coach">
         <p class="muted">
-          Loading stock analysis...
+          Loading analysis...
         </p>
       </div>
 
@@ -811,7 +666,7 @@ button{
         class="btn primary"
         onclick="showView('ai')"
       >
-        Explain This Stock
+        Full Analysis
       </button>
 
     </div>
@@ -821,9 +676,7 @@ button{
 </section>
 
 
-<!-- =========================
-     CHARTS
-========================= -->
+<!-- CHARTS -->
 
 <section
   class="view"
@@ -843,7 +696,7 @@ button{
       </h1>
 
       <p class="muted">
-        Historical daily price data
+        Price action, moving averages and momentum.
       </p>
 
     </div>
@@ -892,6 +745,19 @@ button{
       id="bigChart"
     ></div>
 
+    <div
+      class="muted"
+      style="margin-top:10px;font-size:12px"
+    >
+      <span>━ Price</span>
+      &nbsp;&nbsp;
+      <span style="color:#ffc857">━ SMA 20</span>
+      &nbsp;&nbsp;
+      <span style="color:#7ea7ff">━ SMA 50</span>
+      &nbsp;&nbsp;
+      <span style="color:#ff8f70">━ SMA 200</span>
+    </div>
+
   </div>
 
 
@@ -902,9 +768,7 @@ button{
 
     <div class="card">
 
-      <h3>
-        Trend
-      </h3>
+      <h3>Trend</h3>
 
       <div
         class="metric"
@@ -913,8 +777,25 @@ button{
         —
       </div>
 
-      <p class="muted">
-        Based on recent price movement.
+    </div>
+
+
+    <div class="card">
+
+      <h3>RSI</h3>
+
+      <div
+        class="metric"
+        id="rsi"
+      >
+        —
+      </div>
+
+      <p
+        class="muted"
+        id="rsiSignal"
+      >
+        Loading...
       </p>
 
     </div>
@@ -922,13 +803,29 @@ button{
 
     <div class="card">
 
-      <h3>
-        Period High
-      </h3>
+      <h3>MACD</h3>
 
       <div
         class="metric"
-        id="periodHigh"
+        id="macd"
+      >
+        —
+      </div>
+
+      <p class="muted">
+        Momentum indicator
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>SMA 20</h3>
+
+      <div
+        class="metric"
+        id="sma20"
       >
         —
       </div>
@@ -938,13 +835,25 @@ button{
 
     <div class="card">
 
-      <h3>
-        Period Low
-      </h3>
+      <h3>SMA 50</h3>
 
       <div
         class="metric"
-        id="periodLow"
+        id="sma50"
+      >
+        —
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>SMA 200</h3>
+
+      <div
+        class="metric"
+        id="sma200"
       >
         —
       </div>
@@ -956,9 +865,7 @@ button{
 </section>
 
 
-<!-- =========================
-     FUNDAMENTALS
-========================= -->
+<!-- FUNDAMENTALS -->
 
 <section
   class="view"
@@ -974,11 +881,11 @@ button{
       </div>
 
       <h1>
-        Know What You Own
+        Company Health
       </h1>
 
       <p class="muted">
-        Company and valuation information.
+        Financial metrics to help understand the business.
       </p>
 
     </div>
@@ -990,148 +897,119 @@ button{
 
     <div class="card">
 
-      <h3>
-        Market Snapshot
-      </h3>
+      <h3>Valuation</h3>
 
-      <div class="list">
+      <div class="row">
+        <span class="muted">Market Cap</span>
+        <b id="fMarketCap">—</b>
+      </div>
 
-        <div class="row">
-          <span class="muted">
-            Symbol
-          </span>
-          <b id="fSymbol">—</b>
-        </div>
+      <div class="row">
+        <span class="muted">P/E</span>
+        <b id="fPE">—</b>
+      </div>
 
-        <div class="row">
-          <span class="muted">
-            Company
-          </span>
-          <b id="fCompany">—</b>
-        </div>
+      <div class="row">
+        <span class="muted">Forward P/E</span>
+        <b id="fForwardPE">—</b>
+      </div>
 
-        <div class="row">
-          <span class="muted">
-            Exchange
-          </span>
-          <b id="fExchange">—</b>
-        </div>
-
-        <div class="row">
-          <span class="muted">
-            Currency
-          </span>
-          <b id="fCurrency">—</b>
-        </div>
-
+      <div class="row">
+        <span class="muted">PEG</span>
+        <b id="fPEG">—</b>
       </div>
 
     </div>
 
 
-    <div class="card wide">
+    <div class="card">
 
-      <h3>
-        52-Week Range
-      </h3>
+      <h3>Profitability</h3>
 
-      <div class="stats">
-
-        <div class="stat">
-          <span class="muted">
-            52W Low
-          </span>
-          <b id="fLow">—</b>
-        </div>
-
-        <div class="stat">
-          <span class="muted">
-            52W High
-          </span>
-          <b id="fHigh">—</b>
-        </div>
-
+      <div class="row">
+        <span class="muted">EPS</span>
+        <b id="fEPS">—</b>
       </div>
 
-      <br>
+      <div class="row">
+        <span class="muted">Profit Margin</span>
+        <b id="fMargin">—</b>
+      </div>
 
-      <p class="muted">
-        The 52-week range shows the lowest
-        and highest reported price over
-        approximately one year.
-      </p>
+      <div class="row">
+        <span class="muted">Operating Margin</span>
+        <b id="fOperatingMargin">—</b>
+      </div>
+
+      <div class="row">
+        <span class="muted">ROE</span>
+        <b id="fROE">—</b>
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>Financial Strength</h3>
+
+      <div class="row">
+        <span class="muted">Revenue</span>
+        <b id="fRevenue">—</b>
+      </div>
+
+      <div class="row">
+        <span class="muted">Debt / Equity</span>
+        <b id="fDebt">—</b>
+      </div>
+
+      <div class="row">
+        <span class="muted">Free Cash Flow</span>
+        <b id="fFCF">—</b>
+      </div>
+
+      <div class="row">
+        <span class="muted">Operating Cash Flow</span>
+        <b id="fOCF">—</b>
+      </div>
 
     </div>
 
 
     <div class="card full">
 
-      <h3>
-        Beginner Fundamental Checklist
-      </h3>
+      <h3>Analyst Target Range</h3>
 
-      <div class="row">
+      <div class="stats">
 
-        <span>
-          <b>Revenue</b><br>
-          <span class="muted">
-            Is the company generating sales?
-          </span>
-        </span>
+        <div class="stat">
+          <span class="muted">Low Target</span>
+          <b id="fTargetLow">—</b>
+        </div>
 
-        <span class="pill">
-          Research
-        </span>
+        <div class="stat">
+          <span class="muted">Average Target</span>
+          <b id="fTarget">—</b>
+        </div>
 
-      </div>
+        <div class="stat">
+          <span class="muted">High Target</span>
+          <b id="fTargetHigh">—</b>
+        </div>
 
-
-      <div class="row">
-
-        <span>
-          <b>Profit</b><br>
-          <span class="muted">
-            Is the company actually making money?
-          </span>
-        </span>
-
-        <span class="pill">
-          Research
-        </span>
+        <div class="stat">
+          <span class="muted">Current Price</span>
+          <b id="fCurrent">—</b>
+        </div>
 
       </div>
 
-
-      <div class="row">
-
-        <span>
-          <b>Debt</b><br>
-          <span class="muted">
-            Can the business manage what it owes?
-          </span>
-        </span>
-
-        <span class="pill">
-          Research
-        </span>
-
-      </div>
-
-
-      <div class="row">
-
-        <span>
-          <b>Valuation</b><br>
-          <span class="muted">
-            Is the current stock price reasonable?
-          </span>
-        </span>
-
-        <span class="pill">
-          Research
-        </span>
-
-      </div>
+      <p
+        class="muted"
+        style="margin-top:15px"
+      >
+        Analyst targets are estimates, not guarantees.
+      </p>
 
     </div>
 
@@ -1140,9 +1018,7 @@ button{
 </section>
 
 
-<!-- =========================
-     NEWS
-========================= -->
+<!-- NEWS -->
 
 <section
   class="view"
@@ -1154,7 +1030,7 @@ button{
     <div>
 
       <div class="eyebrow">
-        Market News
+        Live News
       </div>
 
       <h1 id="newsTitle">
@@ -1162,21 +1038,28 @@ button{
       </h1>
 
       <p class="muted">
-        Current research and market coverage.
+        Latest available market headlines.
       </p>
 
     </div>
+
+    <button
+      class="btn"
+      onclick="loadNews()"
+    >
+      ↻ Refresh
+    </button>
 
   </div>
 
 
   <div
-    class="card full news"
+    class="card full"
     id="newsList"
   >
 
-    <p class="muted">
-      Loading research links...
+    <p class="loading">
+      Loading news...
     </p>
 
   </div>
@@ -1184,9 +1067,7 @@ button{
 </section>
 
 
-<!-- =========================
-     AI
-========================= -->
+<!-- AI -->
 
 <section
   class="view"
@@ -1198,16 +1079,15 @@ button{
     <div>
 
       <div class="eyebrow">
-        AI Analysis
+        AI Stock Coach
       </div>
 
       <h1>
-        Stock Coach
+        Complete Analysis
       </h1>
 
       <p class="muted">
-        Educational analysis — not personalized
-        financial advice.
+        Educational analysis — not personalized financial advice.
       </p>
 
     </div>
@@ -1217,57 +1097,161 @@ button{
 
   <div class="grid">
 
-    <div class="card wide">
+    <div class="card">
 
-      <h2 id="aiTitle">
-        AAPL Analysis
-      </h2>
+      <h3>Technical Score</h3>
 
       <div
-        id="aiBody"
-        class="list"
-      ></div>
+        class="score neutral"
+        id="technicalScore"
+      >
+        —
+      </div>
+
+      <div class="bar">
+        <span
+          id="technicalBar"
+          style="width:0%"
+        ></span>
+      </div>
+
+      <p
+        class="muted"
+        id="technicalReason"
+      >
+        Loading...
+      </p>
 
     </div>
 
 
     <div class="card">
 
-      <h2>
-        Decision Framework
-      </h2>
+      <h3>Fundamental Score</h3>
 
-      <p class="muted">
-        Before buying any stock, ask:
+      <div
+        class="score neutral"
+        id="fundamentalScore"
+      >
+        —
+      </div>
+
+      <div class="bar">
+        <span
+          id="fundamentalBar"
+          style="width:0%"
+        ></span>
+      </div>
+
+      <p
+        class="muted"
+        id="fundamentalReason"
+      >
+        Loading...
       </p>
 
-      <div class="row">
-        <b>1.</b>
-        <span class="muted">
-          What is my investment thesis?
-        </span>
+    </div>
+
+
+    <div class="card">
+
+      <h3>Risk Score</h3>
+
+      <div
+        class="score neutral"
+        id="riskScore"
+      >
+        —
       </div>
 
-      <div class="row">
-        <b>2.</b>
-        <span class="muted">
-          What could make me wrong?
-        </span>
+      <div class="bar">
+        <span
+          id="riskBar"
+          style="width:0%"
+        ></span>
       </div>
 
-      <div class="row">
-        <b>3.</b>
-        <span class="muted">
-          What is my time horizon?
-        </span>
+      <p
+        class="muted"
+        id="riskReason"
+      >
+        Loading...
+      </p>
+
+    </div>
+
+
+    <div class="card full">
+
+      <h2>
+        Overall Stock Assessment
+      </h2>
+
+      <div
+        class="signal yellow"
+        id="overallSignal"
+      >
+        ANALYZING
       </div>
 
-      <div class="row">
-        <b>4.</b>
-        <span class="muted">
-          How much risk can I handle?
-        </span>
-      </div>
+      <h2 id="overallScore">
+        —
+      </h2>
+
+      <p
+        class="muted"
+        id="overallReason"
+      >
+        Loading analysis...
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        🟢 Bull Case
+      </h3>
+
+      <p
+        class="muted"
+        id="bullCase"
+      >
+        Loading...
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        🔴 Bear Case
+      </h3>
+
+      <p
+        class="muted"
+        id="bearCase"
+      >
+        Loading...
+      </p>
+
+    </div>
+
+
+    <div class="card full">
+
+      <h3>
+        What Could Change The Analysis?
+      </h3>
+
+      <p
+        class="muted"
+        id="changeCase"
+      >
+        Loading...
+      </p>
 
     </div>
 
@@ -1276,9 +1260,7 @@ button{
 </section>
 
 
-<!-- =========================
-     PORTFOLIO
-========================= -->
+<!-- PORTFOLIO -->
 
 <section
   class="view"
@@ -1298,7 +1280,7 @@ button{
       </h1>
 
       <p class="muted">
-        Holdings are saved locally in this browser.
+        Track positions locally in your browser.
       </p>
 
     </div>
@@ -1340,25 +1322,18 @@ button{
         Add Holding
       </button>
 
-      <button
-        class="btn"
-        onclick="renderHoldings()"
-      >
-        Refresh
-      </button>
-
     </div>
 
 
     <div
-      style="margin-top:20px"
       class="muted"
+      style="margin-top:20px"
     >
       Portfolio Value
     </div>
 
     <div
-      class="portfolio-total"
+      class="score"
       id="portfolioTotal"
     >
       $0.00
@@ -1367,7 +1342,6 @@ button{
 
     <div
       id="holdings"
-      class="list"
       style="margin-top:18px"
     ></div>
 
@@ -1376,9 +1350,7 @@ button{
 </section>
 
 
-<!-- =========================
-     LEARN
-========================= -->
+<!-- LEARN -->
 
 <section
   class="view"
@@ -1398,7 +1370,7 @@ button{
       </h1>
 
       <p class="muted">
-        Simple explanations without unnecessary jargon.
+        Build your investing knowledge step by step.
       </p>
 
     </div>
@@ -1409,87 +1381,50 @@ button{
   <div class="grid">
 
     <div class="card">
-
-      <h3>
-        1. Stock
-      </h3>
-
+      <h3>📈 Stocks</h3>
       <p class="muted">
         A stock represents ownership in a company.
       </p>
-
     </div>
 
-
     <div class="card">
-
-      <h3>
-        2. Market Cap
-      </h3>
-
+      <h3>💰 Valuation</h3>
       <p class="muted">
-        Share price multiplied by shares outstanding.
-        It gives you an idea of company size.
+        Learn how investors evaluate what a company
+        may be worth compared with its stock price.
       </p>
-
     </div>
 
-
     <div class="card">
-
-      <h3>
-        3. Volatility
-      </h3>
-
+      <h3>📊 Technical Analysis</h3>
       <p class="muted">
-        How dramatically a stock price moves.
-        Higher volatility generally means larger
-        price swings.
+        Study price, volume, moving averages,
+        momentum and trends.
       </p>
-
     </div>
 
-
     <div class="card">
-
-      <h3>
-        4. Diversification
-      </h3>
-
+      <h3>🏦 Fundamentals</h3>
       <p class="muted">
-        Spreading investments so one company does
-        not determine your entire portfolio's outcome.
+        Understand revenue, earnings, margins,
+        debt and cash flow.
       </p>
-
     </div>
 
-
     <div class="card">
-
-      <h3>
-        5. Risk
-      </h3>
-
+      <h3>⚠️ Risk</h3>
       <p class="muted">
         Every investment carries uncertainty.
-        Understanding the downside is just as
-        important as understanding potential upside.
+        Understanding downside matters.
       </p>
-
     </div>
 
-
     <div class="card">
-
-      <h3>
-        6. Time Horizon
-      </h3>
-
+      <h3>🧠 Psychology</h3>
       <p class="muted">
-        How long you expect to hold an investment
-        can dramatically affect how you evaluate it.
+        Learn why discipline and avoiding emotional
+        decisions matter to long-term investing.
       </p>
-
     </div>
 
   </div>
@@ -1499,10 +1434,6 @@ button{
 </main>
 </div>
 
-
-<!-- =========================
-     MOBILE NAV
-========================= -->
 
 <nav
   class="mobile-nav"
@@ -1518,65 +1449,47 @@ button{
 
 <script>
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* =========================================
+   STATE
+========================================= */
 
 const NAV = [
-
   ["overview","⌂","Home"],
-
   ["chart","◒","Charts"],
-
   ["fundamentals","◈","Fundamentals"],
-
   ["news","◫","News"],
-
   ["ai","✦","AI Coach"],
-
   ["portfolio","▣","Portfolio"],
-
   ["learn","?","Learn"]
-
 ];
 
-
 let symbol = "AAPL";
-
 let range = "3mo";
-
 let quote = null;
-
 let series = [];
+let fundamentals = null;
+let newsItems = [];
 
 
-/* =====================================================
-   NAVIGATION HTML
-===================================================== */
+/* =========================================
+   NAVIGATION
+========================================= */
 
 function navHTML(){
 
   return NAV.map(
     ([id,icon,label]) => `
-
       <button
         data-view="${id}"
         onclick="showView('${id}')"
       >
-
-        <span class="icon">
-          ${icon}
-        </span>
-
+        <span class="icon">${icon}</span>
         ${label}
-
       </button>
-
     `
   ).join("");
 
 }
-
 
 document.getElementById(
   "sideNav"
@@ -1585,29 +1498,19 @@ document.getElementById(
 
 document.getElementById(
   "mobileNav"
-).innerHTML = NAV.slice(0,5).map(
-  ([id,icon,label]) => `
+).innerHTML =
+  NAV.slice(0,5).map(
+    ([id,icon,label]) => `
+      <button
+        data-view="${id}"
+        onclick="showView('${id}')"
+      >
+        <div>${icon}</div>
+        ${label}
+      </button>
+    `
+  ).join("");
 
-    <button
-      data-view="${id}"
-      onclick="showView('${id}')"
-    >
-
-      <div>
-        ${icon}
-      </div>
-
-      ${label}
-
-    </button>
-
-  `
-).join("");
-
-
-/* =====================================================
-   SHOW VIEW
-===================================================== */
 
 function showView(id){
 
@@ -1636,8 +1539,28 @@ function showView(id){
 
 
   if(id === "chart"){
-    renderChart("bigChart");
-    updatePeriodStats();
+    renderChart();
+    updateTechnicalUI();
+  }
+
+
+  if(id === "fundamentals"){
+    loadFundamentals();
+  }
+
+
+  if(id === "news"){
+    loadNews();
+  }
+
+
+  if(id === "ai"){
+    updateAI();
+  }
+
+
+  if(id === "portfolio"){
+    renderHoldings();
   }
 
 
@@ -1649,9 +1572,9 @@ function showView(id){
 }
 
 
-/* =====================================================
+/* =========================================
    HELPERS
-===================================================== */
+========================================= */
 
 function money(value){
 
@@ -1662,13 +1585,13 @@ function money(value){
     return "—";
   }
 
-
   return new Intl.NumberFormat(
     "en-US",
     {
       style:"currency",
       currency:
-        quote?.meta?.currency || "USD",
+        quote?.meta?.currency ||
+        "USD",
       maximumFractionDigits:2
     }
   ).format(Number(value));
@@ -1676,162 +1599,203 @@ function money(value){
 }
 
 
+function number(value){
+
+  if(
+    value == null ||
+    !Number.isFinite(Number(value))
+  ){
+    return "—";
+  }
+
+  return Number(value).toLocaleString(
+    "en-US",
+    {
+      maximumFractionDigits:2
+    }
+  );
+
+}
+
+
+function percent(value){
+
+  if(
+    value == null ||
+    !Number.isFinite(Number(value))
+  ){
+    return "—";
+  }
+
+  return `${(
+    Number(value) * 100
+  ).toFixed(2)}%`;
+
+}
+
+
+function bigNumber(value){
+
+  if(
+    value == null ||
+    !Number.isFinite(Number(value))
+  ){
+    return "—";
+  }
+
+  const n = Number(value);
+
+  if(Math.abs(n) >= 1e12){
+    return `$${(
+      n / 1e12
+    ).toFixed(2)}T`;
+  }
+
+  if(Math.abs(n) >= 1e9){
+    return `$${(
+      n / 1e9
+    ).toFixed(2)}B`;
+  }
+
+  if(Math.abs(n) >= 1e6){
+    return `$${(
+      n / 1e6
+    ).toFixed(2)}M`;
+  }
+
+  return `$${n.toLocaleString()}`;
+
+}
+
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
 function toast(message){
 
   const box =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
   box.textContent = message;
 
   box.style.display = "block";
 
   setTimeout(() => {
-
     box.style.display = "none";
-
   },3500);
 
 }
 
 
-/* =====================================================
-   NETLIFY STOCK FUNCTION
-===================================================== */
+/* =========================================
+   API
+========================================= */
 
-/*
-   IMPORTANT:
-
-   The "." before "netlify" is required.
-
-   CORRECT:
-
-   /.netlify/functions/stock
-
-   NOT:
-
-   /netlify/functions/stock
-*/
-
-async function fetchStock(
-  sym,
-  rg
+async function api(
+  type = "chart",
+  extra = ""
 ){
 
   const url =
-    `/.netlify/functions/stock?symbol=${
-      encodeURIComponent(sym)
-    }&range=${
-      encodeURIComponent(rg)
-    }`;
-
+    `/.netlify/functions/stock` +
+    `?symbol=${encodeURIComponent(symbol)}` +
+    `&type=${encodeURIComponent(type)}` +
+    extra;
 
   const response =
-    await fetch(url,{
-      method:"GET",
-      headers:{
-        "Accept":"application/json"
-      },
-      cache:"no-store"
-    });
-
+    await fetch(
+      url,
+      {
+        cache:"no-store",
+        headers:{
+          "Accept":
+            "application/json"
+        }
+      }
+    );
 
   const text =
     await response.text();
 
-
-  let data = null;
-
+  let data;
 
   try{
-
-    data =
-      text ? JSON.parse(text) : null;
-
-  }catch(error){
-
-    console.error(
-      "Invalid function response:",
-      text
-    );
-
+    data = JSON.parse(text);
+  }catch{
     throw new Error(
       "Netlify returned an invalid response."
     );
-
   }
-
 
   if(!response.ok){
-
     throw new Error(
       data?.error ||
-      `Market request failed (${response.status})`
+      `Request failed (${response.status})`
     );
-
   }
 
-
-  if(!data){
-
-    throw new Error(
-      "The stock function returned no data."
-    );
-
-  }
-
-
-  if(data.error){
-
+  if(data?.error){
     throw new Error(
       data.error
     );
-
   }
-
 
   return data;
 
 }
 
 
-/* =====================================================
-   LOAD SYMBOL
-===================================================== */
+/* =========================================
+   LOAD STOCK
+========================================= */
 
 async function loadSymbol(){
 
-  const input =
-    document.getElementById(
-      "symbolInput"
-    );
-
-
   symbol =
     (
-      input.value ||
+      document.getElementById(
+        "symbolInput"
+      ).value ||
       "AAPL"
     )
     .trim()
     .toUpperCase();
 
 
-  if(!/^[A-Z0-9.-]{1,12}$/.test(symbol)){
+  if(
+    !/^[A-Z0-9.\-:]{1,20}$/
+      .test(symbol)
+  ){
 
     toast(
-      "Please enter a valid stock ticker."
+      "Enter a valid ticker."
     );
 
     return;
-
   }
 
 
-  input.value = symbol;
+  document.getElementById(
+    "symbolInput"
+  ).value =
+    symbol;
 
 
   document.getElementById(
     "price"
-  ).textContent = "Loading…";
+  ).textContent =
+    "Loading…";
 
 
   document.getElementById(
@@ -1843,14 +1807,10 @@ async function loadSymbol(){
   try{
 
     quote =
-      await fetchStock(
-        symbol,
-        range
+      await api(
+        "chart",
+        `&range=${encodeURIComponent(range)}`
       );
-
-
-    const meta =
-      quote.meta || {};
 
 
     const timestamps =
@@ -1869,207 +1829,31 @@ async function loadSymbol(){
       timestamps
         .map(
           (timestamp,index) => ({
-
             t:timestamp,
-
             v:Number(
               closes[index]
             )
-
           })
         )
         .filter(
-          point =>
-            Number.isFinite(point.v)
+          p =>
+            Number.isFinite(p.v)
         );
 
 
-    const price =
-      Number(
-        meta.regularMarketPrice
-      );
+    updateMainUI();
 
+    renderChart();
 
-    const change =
-      Number(
-        meta.regularMarketChange
-      );
-
-
-    const changePercent =
-      Number(
-        meta.regularMarketChangePercent
-      );
-
-
-    document.getElementById(
-      "company"
-    ).textContent =
-      meta.shortName ||
-      meta.longName ||
-      symbol;
-
-
-    document.getElementById(
-      "sub"
-    ).textContent =
-      `${
-        meta.exchangeName ||
-        "Market"
-      } • ${
-        meta.currency ||
-        "USD"
-      }`;
-
-
-    document.getElementById(
-      "price"
-    ).textContent =
-      money(price);
-
-
-    const changeBox =
-      document.getElementById(
-        "change"
-      );
-
-
-    if(Number.isFinite(change)){
-
-      changeBox.textContent =
-        `${
-          change >= 0
-            ? "+"
-            : ""
-        }${money(change)} ${
-          Number.isFinite(changePercent)
-            ? `(${
-                changePercent >= 0
-                  ? "+"
-                  : ""
-              }${changePercent.toFixed(2)}%)`
-            : ""
-        }`;
-
-
-      changeBox.className =
-        `change ${
-          change >= 0
-            ? "up"
-            : "down"
-        }`;
-
-    }else{
-
-      changeBox.textContent = "—";
-
-      changeBox.className =
-        "change";
-
-    }
-
-
-    document.getElementById(
-      "open"
-    ).textContent =
-      money(
-        meta.regularMarketOpen
-      );
-
-
-    document.getElementById(
-      "high"
-    ).textContent =
-      money(
-        meta.regularMarketDayHigh
-      );
-
-
-    document.getElementById(
-      "low"
-    ).textContent =
-      money(
-        meta.regularMarketDayLow
-      );
-
-
-    document.getElementById(
-      "prev"
-    ).textContent =
-      money(
-        meta.previousClose ??
-        meta.chartPreviousClose
-      );
-
-
-    document.getElementById(
-      "chartTitle"
-    ).textContent =
-      symbol;
-
-
-    document.getElementById(
-      "newsTitle"
-    ).textContent =
-      `${symbol} News`;
-
-
-    document.getElementById(
-      "fSymbol"
-    ).textContent =
-      meta.symbol ||
-      symbol;
-
-
-    document.getElementById(
-      "fCompany"
-    ).textContent =
-      meta.shortName ||
-      meta.longName ||
-      symbol;
-
-
-    document.getElementById(
-      "fExchange"
-    ).textContent =
-      meta.exchangeName ||
-      "—";
-
-
-    document.getElementById(
-      "fCurrency"
-    ).textContent =
-      meta.currency ||
-      "USD";
-
-
-    document.getElementById(
-      "fLow"
-    ).textContent =
-      money(
-        meta.fiftyTwoWeekLow
-      );
-
-
-    document.getElementById(
-      "fHigh"
-    ).textContent =
-      money(
-        meta.fiftyTwoWeekHigh
-      );
-
-
-    updateCoach();
+    updateTechnicalUI();
 
     updateAI();
 
-    buildNews();
+    buildBasicNewsLinks();
 
-    renderChart("miniChart");
+    loadFundamentals();
 
-    renderChart("bigChart");
-
-    updatePeriodStats();
+    loadNews();
 
     renderHoldings();
 
@@ -2082,7 +1866,6 @@ async function loadSymbol(){
 
     console.error(error);
 
-
     document.getElementById(
       "price"
     ).textContent =
@@ -2091,26 +1874,17 @@ async function loadSymbol(){
 
     document.getElementById(
       "sub"
-    ).textContent =
-      error.message ||
-      "Unable to load market data.";
-
-
-    document.getElementById(
-      "coach"
     ).innerHTML = `
-      <p class="error">
+      <span class="error">
         ${escapeHTML(
-          error.message ||
-          "Market data could not be loaded."
+          error.message
         )}
-      </p>
+      </span>
     `;
 
 
     toast(
-      error.message ||
-      "Market data error"
+      error.message
     );
 
   }
@@ -2118,29 +1892,161 @@ async function loadSymbol(){
 }
 
 
-/* =====================================================
-   CHART
-===================================================== */
+/* =========================================
+   MAIN DATA
+========================================= */
 
-function renderChart(
-  elementId
-){
+function updateMainUI(){
 
-  const element =
-    document.getElementById(
-      elementId
+  const meta =
+    quote?.meta || {};
+
+
+  const price =
+    Number(
+      meta.regularMarketPrice
     );
 
 
-  if(!element){
-    return;
+  const change =
+    Number(
+      meta.regularMarketChange
+    );
+
+
+  const changePercent =
+    Number(
+      meta.regularMarketChangePercent
+    );
+
+
+  document.getElementById(
+    "company"
+  ).textContent =
+    meta.shortName ||
+    meta.longName ||
+    symbol;
+
+
+  document.getElementById(
+    "sub"
+  ).textContent =
+    `${
+      meta.exchangeName ||
+      "Market"
+    } • ${
+      meta.currency ||
+      "USD"
+    }`;
+
+
+  document.getElementById(
+    "price"
+  ).textContent =
+    money(price);
+
+
+  const changeBox =
+    document.getElementById(
+      "change"
+    );
+
+
+  if(Number.isFinite(change)){
+
+    changeBox.textContent =
+      `${
+        change >= 0
+          ? "+"
+          : ""
+      }${money(change)} ${
+        Number.isFinite(changePercent)
+          ? `(${
+              changePercent >= 0
+                ? "+"
+                : ""
+            }${changePercent.toFixed(2)}%)`
+          : ""
+      }`;
+
+
+    changeBox.className =
+      `change ${
+        change >= 0
+          ? "up"
+          : "down"
+      }`;
+
   }
+
+
+  document.getElementById(
+    "open"
+  ).textContent =
+    money(
+      meta.regularMarketOpen
+    );
+
+
+  document.getElementById(
+    "high"
+  ).textContent =
+    money(
+      meta.regularMarketDayHigh
+    );
+
+
+  document.getElementById(
+    "low"
+  ).textContent =
+    money(
+      meta.regularMarketDayLow
+    );
+
+
+  document.getElementById(
+    "prev"
+  ).textContent =
+    money(
+      meta.previousClose
+    );
+
+
+  document.getElementById(
+    "chartTitle"
+  ).textContent =
+    symbol;
+
+
+  document.getElementById(
+    "newsTitle"
+  ).textContent =
+    `${symbol} News`;
+
+}
+
+
+/* =========================================
+   CHART
+========================================= */
+
+function renderChart(){
+
+  const element =
+    document.getElementById(
+      "bigChart"
+    );
+
+
+  const mini =
+    document.getElementById(
+      "miniChart"
+    );
 
 
   if(!series.length){
 
-    element.innerHTML = `
-
+    const empty = `
       <div
         class="muted"
         style="
@@ -2149,26 +2055,23 @@ function renderChart(
           height:100%;
         "
       >
-        No chart data available yet.
+        No chart data available.
       </div>
-
     `;
 
+    if(element)
+      element.innerHTML = empty;
+
+    if(mini)
+      mini.innerHTML = empty;
+
     return;
-
   }
-
-
-  const width = 900;
-
-  const height = 350;
-
-  const padding = 25;
 
 
   const values =
     series.map(
-      point => point.v
+      x => x.v
     );
 
 
@@ -2184,107 +2087,80 @@ function renderChart(
     max - min || 1;
 
 
-  const points =
-    series
-      .map(
-        (point,index) => {
+  const width = 900;
+  const height = 350;
+  const padding = 30;
 
-          const x =
-            padding +
+
+  const pricePoints =
+    series.map(
+      (point,index) => {
+
+        const x =
+          padding +
+          (
+            index /
+            Math.max(
+              series.length - 1,
+              1
+            )
+          ) *
+          (
+            width -
+            padding * 2
+          );
+
+
+        const y =
+          height -
+          padding -
+          (
             (
-              index /
-              Math.max(
-                series.length - 1,
-                1
-              )
-            ) *
-            (
-              width -
-              padding * 2
-            );
-
-
-          const y =
+              point.v -
+              min
+            ) /
+            spread
+          ) *
+          (
             height -
-            padding -
-            (
-              (
-                point.v -
-                min
-              ) /
-              spread
-            ) *
-            (
-              height -
-              padding * 2
-            );
+            padding * 2
+          );
 
 
-          return `${x.toFixed(2)},${y.toFixed(2)}`;
+        return {
+          x,
+          y,
+          value:point.v
+        };
 
-        }
+      }
+    );
+
+
+  const line =
+    pricePoints
+      .map(
+        p =>
+          `${p.x.toFixed(2)},${p.y.toFixed(2)}`
       )
       .join(" ");
 
 
   const first =
-    series[0];
+    pricePoints[0];
 
 
   const last =
-    series[series.length - 1];
+    pricePoints.at(-1);
 
 
-  const firstX =
-    padding;
+  const area =
+    `${padding},${height-padding} ` +
+    `${line} ` +
+    `${width-padding},${height-padding}`;
 
 
-  const lastX =
-    width -
-    padding;
-
-
-  const firstY =
-    height -
-    padding -
-    (
-      (
-        first.v -
-        min
-      ) /
-      spread
-    ) *
-    (
-      height -
-      padding * 2
-    );
-
-
-  const lastY =
-    height -
-    padding -
-    (
-      (
-        last.v -
-        min
-      ) /
-      spread
-    ) *
-    (
-      height -
-      padding * 2
-    );
-
-
-  const areaPoints =
-    `${firstX},${height-padding} ${
-      points
-    } ${
-      lastX
-    },${height-padding}`;
-
-
-  element.innerHTML = `
+  const svg = `
 
     <svg
       viewBox="0 0 ${width} ${height}"
@@ -2304,7 +2180,7 @@ function renderChart(
           <stop
             offset="0%"
             stop-color="#28d7d0"
-            stop-opacity=".30"
+            stop-opacity=".28"
           />
 
           <stop
@@ -2319,7 +2195,7 @@ function renderChart(
 
 
       <line
-        class="axis"
+        class="chart-grid"
         x1="${padding}"
         y1="${height-padding}"
         x2="${width-padding}"
@@ -2328,55 +2204,68 @@ function renderChart(
 
 
       <polygon
-        class="area"
-        points="${areaPoints}"
+        class="chart-area"
+        points="${area}"
       />
 
 
       <polyline
-        class="line"
-        points="${points}"
+        class="chart-line"
+        points="${line}"
       />
 
 
       <circle
-        class="dot"
-        cx="${lastX}"
-        cy="${lastY}"
+        class="chart-dot"
+        cx="${last.x}"
+        cy="${last.y}"
         r="5"
       />
 
     </svg>
 
-
-    <div
-      style="
-        display:flex;
-        justify-content:space-between;
-        color:var(--muted);
-        font-size:12px;
-        margin-top:-4px;
-      "
-    >
-
-      <span>
-        ${money(first.v)}
-      </span>
-
-      <span>
-        ${money(last.v)}
-      </span>
-
-    </div>
-
   `;
+
+
+  if(element){
+
+    element.innerHTML =
+      svg +
+      `
+        <div
+          style="
+            display:flex;
+            justify-content:space-between;
+            color:var(--muted);
+            font-size:12px;
+          "
+        >
+          <span>
+            ${money(first.value)}
+          </span>
+
+          <span>
+            ${money(last.value)}
+          </span>
+        </div>
+      `;
+
+  }
+
+
+  if(mini){
+
+    mini.innerHTML =
+      svg;
+
+  }
 
 }
 
 
-/* =====================================================
-   CHART RANGE
-===================================================== */
+/* =========================================
+   RANGE
+========================================= */
 
 document
   .getElementById(
@@ -2392,9 +2281,8 @@ document
         );
 
 
-      if(!button){
+      if(!button)
         return;
-      }
 
 
       range =
@@ -2414,17 +2302,12 @@ document
         );
 
 
-      if(!symbol){
-        return;
-      }
-
-
       try{
 
         quote =
-          await fetchStock(
-            symbol,
-            range
+          await api(
+            "chart",
+            `&range=${encodeURIComponent(range)}`
           );
 
 
@@ -2452,32 +2335,20 @@ document
             )
             .filter(
               x =>
-                Number.isFinite(x.v)
+                Number.isFinite(
+                  x.v
+                )
             );
 
 
-        renderChart(
-          "bigChart"
-        );
+        renderChart();
 
-
-        renderChart(
-          "miniChart"
-        );
-
-
-        updatePeriodStats();
-
-
-        toast(
-          `${symbol} ${range} chart loaded`
-        );
+        updateTechnicalUI();
 
       }catch(error){
 
         toast(
-          error.message ||
-          "Unable to change chart range."
+          error.message
         );
 
       }
@@ -2486,399 +2357,374 @@ document
   );
 
 
-/* =====================================================
-   PERIOD STATS
-===================================================== */
+/* =========================================
+   TECHNICALS
+========================================= */
 
-function updatePeriodStats(){
+function updateTechnicalUI(){
 
-  if(!series.length){
-
-    document.getElementById(
-      "trend"
-    ).textContent = "—";
+  const technicals =
+    quote?.technicals;
 
 
-    document.getElementById(
-      "periodHigh"
-    ).textContent = "—";
-
-
-    document.getElementById(
-      "periodLow"
-    ).textContent = "—";
-
+  if(!technicals)
     return;
-  }
-
-
-  const values =
-    series.map(
-      x => x.v
-    );
-
-
-  const high =
-    Math.max(...values);
-
-
-  const low =
-    Math.min(...values);
-
-
-  const first =
-    values[0];
-
-
-  const last =
-    values[values.length - 1];
-
-
-  const change =
-    first
-      ? (
-          (last-first) /
-          first
-        ) * 100
-      : 0;
-
-
-  let trend =
-    "Sideways";
-
-
-  if(change > 2){
-    trend = "Bullish";
-  }
-
-  if(change < -2){
-    trend = "Bearish";
-  }
 
 
   document.getElementById(
     "trend"
   ).textContent =
-    trend;
+    technicals.trend ||
+    "NEUTRAL";
 
 
   document.getElementById(
-    "periodHigh"
+    "rsi"
   ).textContent =
-    money(high);
+    technicals.rsi != null
+      ? Number(
+          technicals.rsi
+        ).toFixed(2)
+      : "—";
 
 
   document.getElementById(
-    "periodLow"
+    "rsiSignal"
   ).textContent =
-    money(low);
+    technicals.rsiSignal ||
+    "—";
+
+
+  document.getElementById(
+    "macd"
+  ).textContent =
+    technicals.macd?.macd != null
+      ? Number(
+          technicals.macd.macd
+        ).toFixed(2)
+      : "—";
+
+
+  document.getElementById(
+    "sma20"
+  ).textContent =
+    money(
+      technicals.sma20
+    );
+
+
+  document.getElementById(
+    "sma50"
+  ).textContent =
+    money(
+      technicals.sma50
+    );
+
+
+  document.getElementById(
+    "sma200"
+  ).textContent =
+    money(
+      technicals.sma200
+    );
 
 }
 
 
-/* =====================================================
-   AI COACH
-===================================================== */
+/* =========================================
+   FUNDAMENTALS
+========================================= */
 
-function updateCoach(){
+async function loadFundamentals(){
 
-  const meta =
-    quote?.meta || {};
+  try{
+
+    const data =
+      await api(
+        "fundamentals"
+      );
 
 
-  const price =
-    Number(
-      meta.regularMarketPrice
+    fundamentals =
+      data.fundamentals ||
+      {};
+
+
+    const f =
+      fundamentals;
+
+
+    document.getElementById(
+      "fMarketCap"
+    ).textContent =
+      bigNumber(
+        f.marketCap
+      );
+
+
+    document.getElementById(
+      "fPE"
+    ).textContent =
+      number(f.pe);
+
+
+    document.getElementById(
+      "fForwardPE"
+    ).textContent =
+      number(
+        f.forwardPe
+      );
+
+
+    document.getElementById(
+      "fPEG"
+    ).textContent =
+      number(
+        f.pegRatio
+      );
+
+
+    document.getElementById(
+      "fEPS"
+    ).textContent =
+      money(
+        f.eps
+      );
+
+
+    document.getElementById(
+      "fMargin"
+    ).textContent =
+      percent(
+        f.profitMargin
+      );
+
+
+    document.getElementById(
+      "fOperatingMargin"
+    ).textContent =
+      percent(
+        f.operatingMargin
+      );
+
+
+    document.getElementById(
+      "fROE"
+    ).textContent =
+      percent(
+        f.returnOnEquity
+      );
+
+
+    document.getElementById(
+      "fRevenue"
+    ).textContent =
+      bigNumber(
+        f.revenue
+      );
+
+
+    document.getElementById(
+      "fDebt"
+    ).textContent =
+      number(
+        f.debtToEquity
+      );
+
+
+    document.getElementById(
+      "fFCF"
+    ).textContent =
+      bigNumber(
+        f.freeCashFlow
+      );
+
+
+    document.getElementById(
+      "fOCF"
+    ).textContent =
+      bigNumber(
+        f.operatingCashFlow
+      );
+
+
+    document.getElementById(
+      "fTargetLow"
+    ).textContent =
+      money(
+        f.targetLow
+      );
+
+
+    document.getElementById(
+      "fTarget"
+    ).textContent =
+      money(
+        f.targetPrice
+      );
+
+
+    document.getElementById(
+      "fTargetHigh"
+    ).textContent =
+      money(
+        f.targetHigh
+      );
+
+
+    document.getElementById(
+      "fCurrent"
+    ).textContent =
+      money(
+        quote?.meta
+          ?.regularMarketPrice
+      );
+
+
+  }catch(error){
+
+    console.error(
+      "Fundamentals:",
+      error
     );
-
-
-  const changePercent =
-    Number(
-      meta.regularMarketChangePercent
-    );
-
-
-  let signal =
-    "WATCH";
-
-
-  let signalClass =
-    "yellow";
-
-
-  if(
-    Number.isFinite(changePercent) &&
-    changePercent >= 1
-  ){
-
-    signal =
-      "POSITIVE MOMENTUM";
-
-    signalClass =
-      "green";
 
   }
 
-
-  if(
-    Number.isFinite(changePercent) &&
-    changePercent <= -1
-  ){
-
-    signal =
-      "NEGATIVE MOMENTUM";
-
-    signalClass =
-      "red";
-
-  }
-
-
-  document.getElementById(
-    "coach"
-  ).innerHTML = `
-
-    <div
-      class="signal ${signalClass}"
-    >
-      ${signal}
-    </div>
-
-    <p class="muted">
-
-      ${
-        Number.isFinite(price)
-          ? `${symbol} is currently trading around ${money(price)}.`
-          : "Current price unavailable."
-      }
-
-    </p>
-
-    <p class="muted">
-
-      ${
-        Number.isFinite(changePercent)
-          ? `Today's move is ${changePercent >= 0 ? "+" : ""}${changePercent.toFixed(2)}%.`
-          : "Today's percentage move is unavailable."
-      }
-
-    </p>
-
-    <p class="muted">
-
-      Use the chart, fundamentals, news,
-      and your own risk tolerance before
-      making an investment decision.
-
-    </p>
-
-  `;
-
 }
 
 
-/* =====================================================
-   AI ANALYSIS
-===================================================== */
+/* =========================================
+   NEWS
+========================================= */
 
-function updateAI(){
+async function loadNews(){
 
-  const meta =
-    quote?.meta || {};
-
-
-  const price =
-    Number(
-      meta.regularMarketPrice
-    );
-
-
-  const change =
-    Number(
-      meta.regularMarketChangePercent
-    );
-
-
-  const high52 =
-    Number(
-      meta.fiftyTwoWeekHigh
-    );
-
-
-  const low52 =
-    Number(
-      meta.fiftyTwoWeekLow
-    );
-
-
-  document.getElementById(
-    "aiTitle"
-  ).textContent =
-    `${symbol} Analysis`;
-
-
-  document.getElementById(
-    "aiBody"
-  ).innerHTML = `
-
-    <div class="row">
-
-      <span>
-        <b>Current Price</b>
-      </span>
-
-      <span>
-        ${
-          Number.isFinite(price)
-            ? money(price)
-            : "—"
-        }
-      </span>
-
-    </div>
-
-
-    <div class="row">
-
-      <span>
-        <b>Daily Momentum</b>
-      </span>
-
-      <span>
-
-        ${
-          Number.isFinite(change)
-            ? `${
-                change >= 0
-                  ? "+"
-                  : ""
-              }${change.toFixed(2)}%`
-            : "—"
-        }
-
-      </span>
-
-    </div>
-
-
-    <div class="row">
-
-      <span>
-        <b>52-Week Low</b>
-      </span>
-
-      <span>
-        ${
-          Number.isFinite(low52)
-            ? money(low52)
-            : "—"
-        }
-      </span>
-
-    </div>
-
-
-    <div class="row">
-
-      <span>
-        <b>52-Week High</b>
-      </span>
-
-      <span>
-        ${
-          Number.isFinite(high52)
-            ? money(high52)
-            : "—"
-        }
-      </span>
-
-    </div>
-
-
-    <div class="card">
-
-      <h3>
-        What To Investigate
-      </h3>
-
-      <p class="muted">
-        Revenue growth, earnings, free cash flow,
-        debt, valuation, competitive advantages,
-        management quality, and upcoming catalysts.
-      </p>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   NEWS / RESEARCH
-===================================================== */
-
-function buildNews(){
-
-  const list =
+  const container =
     document.getElementById(
       "newsList"
     );
 
 
+  container.innerHTML = `
+    <p class="loading">
+      Loading live headlines...
+    </p>
+  `;
+
+
+  try{
+
+    const data =
+      await api(
+        "news"
+      );
+
+
+    newsItems =
+      Array.isArray(
+        data.news
+      )
+        ? data.news
+        : [];
+
+
+    if(!newsItems.length){
+
+      buildBasicNewsLinks();
+
+      return;
+    }
+
+
+    container.innerHTML =
+      newsItems
+        .map(
+          item => {
+
+            const date =
+              item.published
+                ? new Date(
+                    item.published *
+                    1000
+                  ).toLocaleString()
+                : "";
+
+
+            return `
+
+              <div class="news-item">
+
+                <a
+                  href="${escapeHTML(
+                    item.link
+                  )}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ${escapeHTML(
+                    item.title
+                  )}
+                </a>
+
+                <div class="news-date">
+
+                  ${escapeHTML(
+                    item.publisher
+                  )}
+
+                  ${
+                    date
+                      ? ` • ${escapeHTML(date)}`
+                      : ""
+                  }
+
+                </div>
+
+              </div>
+
+            `;
+
+          }
+        )
+        .join("");
+
+
+  }catch(error){
+
+    container.innerHTML = `
+
+      <p class="error">
+        Unable to load live news.
+      </p>
+
+    `;
+
+  }
+
+}
+
+
+function buildBasicNewsLinks(){
+
   const encoded =
-    encodeURIComponent(symbol);
+    encodeURIComponent(
+      symbol
+    );
 
 
-  list.innerHTML = `
-
-    <div class="news-item">
-
-      <a
-        href="https://www.google.com/search?q=${encoded}+stock+news"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Search latest ${symbol} stock news →
-      </a>
-
-      <p class="muted">
-        Open current market coverage and headlines.
-      </p>
-
-    </div>
-
+  document.getElementById(
+    "newsList"
+  ).innerHTML = `
 
     <div class="news-item">
 
       <a
-        href="https://www.google.com/search?q=${encoded}+earnings"
+        href="https://www.google.com/search?tbm=nws&q=${encoded}"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Search ${symbol} earnings information →
+        Search latest ${escapeHTML(symbol)} news →
       </a>
-
-      <p class="muted">
-        Research recent earnings and company results.
-      </p>
-
-    </div>
-
-
-    <div class="news-item">
-
-      <a
-        href="https://www.google.com/search?q=${encoded}+SEC+filings"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Search ${symbol} SEC filings →
-      </a>
-
-      <p class="muted">
-        Review company filings and official disclosures.
-      </p>
 
     </div>
 
@@ -2887,9 +2733,479 @@ function buildNews(){
 }
 
 
-/* =====================================================
+/* =========================================
+   AI ANALYSIS
+========================================= */
+
+function updateAI(){
+
+  const technicals =
+    quote?.technicals || {};
+
+
+  const f =
+    fundamentals || {};
+
+
+  let technicalScore = 50;
+
+
+  if(
+    technicals.trend ===
+    "BULLISH"
+  ){
+    technicalScore += 20;
+  }
+
+
+  if(
+    technicals.trend ===
+    "BEARISH"
+  ){
+    technicalScore -= 20;
+  }
+
+
+  if(
+    technicals.rsi != null
+  ){
+
+    if(
+      technicals.rsi >= 40 &&
+      technicals.rsi <= 65
+    ){
+      technicalScore += 10;
+    }
+
+    if(
+      technicals.rsi > 70
+    ){
+      technicalScore -= 5;
+    }
+
+    if(
+      technicals.rsi < 30
+    ){
+      technicalScore += 5;
+    }
+
+  }
+
+
+  technicalScore =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        technicalScore
+      )
+    );
+
+
+  let fundamentalScore = 50;
+
+
+  if(
+    f.profitMargin != null &&
+    f.profitMargin > 0.15
+  ){
+    fundamentalScore += 15;
+  }
+
+
+  if(
+    f.revenueGrowth != null &&
+    f.revenueGrowth > 0
+  ){
+    fundamentalScore += 10;
+  }
+
+
+  if(
+    f.freeCashFlow != null &&
+    f.freeCashFlow > 0
+  ){
+    fundamentalScore += 10;
+  }
+
+
+  if(
+    f.debtToEquity != null &&
+    f.debtToEquity < 100
+  ){
+    fundamentalScore += 5;
+  }
+
+
+  fundamentalScore =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        fundamentalScore
+      )
+    );
+
+
+  let riskScore = 50;
+
+
+  if(
+    technicals.rsi > 70
+  ){
+    riskScore += 15;
+  }
+
+
+  if(
+    f.debtToEquity > 200
+  ){
+    riskScore += 20;
+  }
+
+
+  if(
+    technicals.trend ===
+    "BEARISH"
+  ){
+    riskScore += 10;
+  }
+
+
+  if(
+    technicals.trend ===
+    "BULLISH"
+  ){
+    riskScore -= 10;
+  }
+
+
+  riskScore =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        riskScore
+      )
+    );
+
+
+  const overall =
+    Math.round(
+      (
+        technicalScore +
+        fundamentalScore +
+        (100 - riskScore)
+      ) / 3
+    );
+
+
+  setScore(
+    "technicalScore",
+    "technicalBar",
+    technicalScore
+  );
+
+
+  setScore(
+    "fundamentalScore",
+    "fundamentalBar",
+    fundamentalScore
+  );
+
+
+  setScore(
+    "riskScore",
+    "riskBar",
+    riskScore
+  );
+
+
+  document.getElementById(
+    "overallScore"
+  ).textContent =
+    `${overall}/100`;
+
+
+  const signal =
+    document.getElementById(
+      "overallSignal"
+    );
+
+
+  if(overall >= 70){
+
+    signal.textContent =
+      "POSITIVE SETUP";
+
+    signal.className =
+      "signal green";
+
+  }
+
+  else if(overall <= 40){
+
+    signal.textContent =
+      "HIGHER RISK SETUP";
+
+    signal.className =
+      "signal red";
+
+  }
+
+  else{
+
+    signal.textContent =
+      "MIXED / WATCH";
+
+    signal.className =
+      "signal yellow";
+
+  }
+
+
+  document.getElementById(
+    "overallReason"
+  ).textContent =
+    buildOverallReason(
+      technicalScore,
+      fundamentalScore,
+      riskScore,
+      overall
+    );
+
+
+  document.getElementById(
+    "technicalReason"
+  ).textContent =
+    `Trend: ${
+      technicals.trend ||
+      "Neutral"
+    }. RSI: ${
+      technicals.rsi != null
+        ? Number(
+            technicals.rsi
+          ).toFixed(1)
+        : "N/A"
+    }.`;
+
+  document.getElementById(
+    "fundamentalReason"
+  ).textContent =
+    `Profit margin: ${
+      percent(
+        f.profitMargin
+      )
+    }. Free cash flow: ${
+      bigNumber(
+        f.freeCashFlow
+      )
+    }.`;
+
+  document.getElementById(
+    "riskReason"
+  ).textContent =
+    `Risk increases with extreme momentum,
+    high leverage or bearish trends.`;
+
+
+  document.getElementById(
+    "bullCase"
+  ).textContent =
+    buildBullCase(
+      technicals,
+      f
+    );
+
+
+  document.getElementById(
+    "bearCase"
+  ).textContent =
+    buildBearCase(
+      technicals,
+      f
+    );
+
+
+  document.getElementById(
+    "changeCase"
+  ).textContent =
+    `The assessment could change with new earnings,
+    major guidance changes, significant price breaks,
+    changes in valuation, debt or cash flow,
+    or important company news.`;
+
+}
+
+
+function setScore(
+  scoreId,
+  barId,
+  value
+){
+
+  const score =
+    document.getElementById(
+      scoreId
+    );
+
+
+  const bar =
+    document.getElementById(
+      barId
+    );
+
+
+  score.textContent =
+    `${Math.round(value)}/100`;
+
+
+  bar.style.width =
+    `${value}%`;
+
+
+  score.className =
+    "score " +
+    (
+      value >= 70
+        ? "good"
+        : value <= 40
+          ? "bad"
+          : "neutral"
+    );
+
+}
+
+
+function buildOverallReason(
+  technical,
+  fundamental,
+  risk,
+  overall
+){
+
+  if(overall >= 70){
+
+    return `${symbol} currently has a relatively strong combined setup based on the available technical and fundamental data. This is a research signal, not a buy recommendation.`;
+
+  }
+
+
+  if(overall <= 40){
+
+    return `${symbol} currently has several risk factors in the available data. Additional research is important before making any investment decision.`;
+
+  }
+
+
+  return `${symbol} currently has a mixed setup. Some indicators are positive while others require more investigation.`;
+
+}
+
+
+function buildBullCase(
+  technicals,
+  f
+){
+
+  const reasons = [];
+
+
+  if(
+    technicals.trend ===
+    "BULLISH"
+  ){
+    reasons.push(
+      "price trend is bullish"
+    );
+  }
+
+
+  if(
+    f.revenueGrowth != null &&
+    f.revenueGrowth > 0
+  ){
+    reasons.push(
+      "revenue is growing"
+    );
+  }
+
+
+  if(
+    f.freeCashFlow != null &&
+    f.freeCashFlow > 0
+  ){
+    reasons.push(
+      "free cash flow is positive"
+    );
+  }
+
+
+  if(!reasons.length){
+
+    return "A stronger bull case would require evidence of improving earnings, cash flow, growth or technical momentum.";
+
+  }
+
+
+  return `Potential positives include ${reasons.join(", ")}.`;
+
+}
+
+
+function buildBearCase(
+  technicals,
+  f
+){
+
+  const reasons = [];
+
+
+  if(
+    technicals.trend ===
+    "BEARISH"
+  ){
+    reasons.push(
+      "the current trend is bearish"
+    );
+  }
+
+
+  if(
+    technicals.rsi != null &&
+    technicals.rsi > 70
+  ){
+    reasons.push(
+      "momentum may be overheated"
+    );
+  }
+
+
+  if(
+    f.debtToEquity != null &&
+    f.debtToEquity > 200
+  ){
+    reasons.push(
+      "leverage is elevated"
+    );
+  }
+
+
+  if(!reasons.length){
+
+    return "The bear case would strengthen if earnings weaken, valuation expands too far, growth slows or the technical trend breaks down.";
+
+  }
+
+
+  return `Potential concerns include ${reasons.join(", ")}.`;
+
+}
+
+
+/* =========================================
    PORTFOLIO
-===================================================== */
+========================================= */
 
 function getHoldings(){
 
@@ -2952,11 +3268,10 @@ function addHolding(){
   ){
 
     toast(
-      "Enter a ticker and number of shares."
+      "Enter a valid ticker and number of shares."
     );
 
     return;
-
   }
 
 
@@ -2979,7 +3294,7 @@ function addHolding(){
 
 
   toast(
-    `${ticker} added to portfolio`
+    `${ticker} added`
   );
 
 }
@@ -3025,13 +3340,9 @@ function renderHoldings(){
 
     container.innerHTML = `
 
-      <div class="muted">
-
+      <p class="muted">
         No holdings yet.
-        Add a stock above to build
-        your practice portfolio.
-
-      </div>
+      </p>
 
     `;
 
@@ -3043,7 +3354,6 @@ function renderHoldings(){
 
 
     return;
-
   }
 
 
@@ -3058,8 +3368,10 @@ function renderHoldings(){
 
 
         if(
-          holding.ticker === symbol &&
-          quote?.meta?.regularMarketPrice
+          holding.ticker ===
+          symbol &&
+          quote?.meta
+            ?.regularMarketPrice
         ){
 
           price =
@@ -3073,16 +3385,15 @@ function renderHoldings(){
 
         const value =
           Number.isFinite(price)
-            ? price * holding.shares
+            ? price *
+              holding.shares
             : null;
 
 
         if(
           Number.isFinite(value)
         ){
-
           total += value;
-
         }
 
 
@@ -3106,21 +3417,18 @@ function renderHoldings(){
 
               </div>
 
-
               <div>
 
                 <div class="holding-value">
-
                   ${
                     value != null
                       ? money(value)
-                      : "Price unavailable"
+                      : "Load ticker to value"
                   }
-
                 </div>
 
                 <button
-                  class="btn danger"
+                  class="btn"
                   style="
                     margin-top:7px;
                     padding:6px 9px;
@@ -3140,8 +3448,7 @@ function renderHoldings(){
         `;
 
       }
-    )
-    .join("");
+    ).join("");
 
 
   document.getElementById(
@@ -3152,27 +3459,9 @@ function renderHoldings(){
 }
 
 
-/* =====================================================
-   SECURITY
-===================================================== */
-
-function escapeHTML(
-  value
-){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* =====================================================
-   START APP
-===================================================== */
+/* =========================================
+   START
+========================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
